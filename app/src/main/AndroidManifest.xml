@@ -18,15 +18,15 @@
             android:value="@string/map_key" />
 
         <activity
-            android:name="ru.zemga.mobile.android.ui.MainActivity"
+            android:name="ru.zemga.mobile.android.ui.main.MainActivity"
             android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ru.zemga.mobile.android.ui.MainActivity" />
+                android:value="ru.zemga.mobile.android.ui.main.MainActivity" />
         </activity>
 
         <activity
-            android:name="ru.zemga.mobile.android.ui.SplashActivity"
+            android:name="ru.zemga.mobile.android.ui.main.SplashActivity"
             android:theme="@style/Theme.Zemga.SplashTheme"
             android:exported="true">
             <intent-filter>

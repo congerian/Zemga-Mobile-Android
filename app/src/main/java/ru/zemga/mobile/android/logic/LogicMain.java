@@ -15,7 +15,7 @@ public class LogicMain
     private final static Object mutex = new Object();
 
     private final Context context;
-    private LogicThread logicThread;
+    private final LogicThread logicThread;
 
     public static LogicMain getInstance(Context context)
     {
