@@ -1,8 +1,39 @@
 <resources>
     <style name="Theme.Zemga.MainTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/dark</item>
+        <item name="colorPrimaryVariant">@color/gray</item>
+        <item name="colorOnPrimary">@color/light_beige</item>
+
+        <item name="colorSecondary">@color/dark</item>
+        <item name="colorSecondaryVariant">@color/gray</item>
+        <item name="colorOnSecondary">@color/light_beige</item>
 
         <item name="android:colorBackground">@color/dark</item>
+        <item name="colorOnBackground">@color/light_beige</item>
+
+        <item name="colorError">@color/green</item>
+        <item name="colorOnError">@color/blue</item>
+
+        <item name="colorOnSurface">@color/light_beige</item>
+        <item name="colorSurface">@color/dark</item>
+
         <item name="android:statusBarColor">@color/dark</item>
     </style>
+
+    <style name="Theme.Zemga.MainTheme.NavigationBar" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="itemTextAppearanceInactive">@color/primary_variant</item>
+        <item name="itemTextAppearanceActive">@color/primary_variant</item>
+        <item name="itemIconTint">@color/primary_variant</item>
+        <item name="itemTextColor">@color/primary_variant</item>
+
+        <item name="itemRippleColor">@null</item>
+
+        <item name="backgroundTint">?attr/colorPrimary</item>
+        <item name="labelVisibilityMode">unlabeled</item>
+
+        <item name="elevation">4dp</item>
+
+        <item name="android:outlineAmbientShadowColor">?attr/colorOnPrimary</item>
+    </style>
+
 </resources>
