@@ -5,6 +5,8 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 import ru.zemga.mobile.android.R;
 
 public class LogicMain
@@ -12,21 +14,22 @@ public class LogicMain
     @SuppressLint("StaticFieldLeak")
     private static volatile LogicMain instance;
 
-    private final static Object mutex = new Object();
+    private final static ReentrantLock instanceMutex = new ReentrantLock();
 
     private final Context context;
     private final LogicThread logicThread;
+
+    private volatile LandRepository landRepository;
 
     public static LogicMain getInstance(Context context)
     {
         LogicMain result = instance;
         if (result == null)
         {
-            synchronized (mutex)
-            {
-                result = instance;
-                if (result == null) instance = result = new LogicMain(context);
-            }
+            instanceMutex.lock();
+            result = instance;
+            if (result == null) instance = result = new LogicMain(context);
+            instanceMutex.unlock();
         }
         return result;
     }
@@ -39,9 +42,12 @@ public class LogicMain
             while (true)
             {
                 Log.i(context.getResources().getString(R.string.app_name), "Still working...");
-                try {
+                try
+                {
                     Thread.sleep(2000L);
-                } catch (InterruptedException e) {
+                }
+                catch (InterruptedException e)
+                {
                     e.printStackTrace();
                 }
             }
@@ -51,7 +57,11 @@ public class LogicMain
     private LogicMain(Context context)
     {
         if (!(context instanceof Application))
+        {
             throw new Error("LogicMain can only be instantiated using Application context!");
+        }
+
+        this.landRepository = new LandRepository();
         this.context = context;
         this.logicThread = new LogicThread();
 
