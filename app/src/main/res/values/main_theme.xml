@@ -28,7 +28,6 @@
 
         <item name="itemRippleColor">@null</item>
 
-        <item name="backgroundTint">?attr/colorPrimary</item>
         <item name="labelVisibilityMode">unlabeled</item>
 
         <item name="elevation">4dp</item>
