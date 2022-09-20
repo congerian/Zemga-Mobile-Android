@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="server_url">178.250.157.247</string>
+    <string name="server_port">8443</string>
+    <bool name="server_isHTTPS">false</bool>
+    <string name="server_rest_client_get_all">client/get/land/all</string>
+</resources>
