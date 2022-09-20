@@ -34,6 +34,11 @@ public class LogicMain
         return result;
     }
 
+    public LandRepository getRepository()
+    {
+        return landRepository;
+    }
+
     private class LogicThread extends Thread
     {
         @Override
@@ -44,7 +49,8 @@ public class LogicMain
                 Log.i(context.getResources().getString(R.string.app_name), "Still working...");
                 try
                 {
-                    Thread.sleep(2000L);
+                    Thread.sleep(15000L);
+                    landRepository.requestUpdate();
                 }
                 catch (InterruptedException e)
                 {
@@ -61,7 +67,7 @@ public class LogicMain
             throw new Error("LogicMain can only be instantiated using Application context!");
         }
 
-        this.landRepository = new LandRepository();
+        this.landRepository = new LandRepository(context.getResources());
         this.context = context;
         this.logicThread = new LogicThread();
 

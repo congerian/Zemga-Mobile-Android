@@ -1,6 +1,7 @@
 package ru.zemga.mobile.android.ui.main;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
@@ -15,8 +16,12 @@ import java.util.Objects;
 
 import ru.zemga.mobile.android.R;
 import ru.zemga.mobile.android.databinding.MainActivityBinding;
+import ru.zemga.mobile.android.logic.LogicMain;
+import ru.zemga.mobile.android.logic.RepositoryLandMessage;
+import ru.zemga.mobile.android.logic.RepositoryMessage;
+import ru.zemga.mobile.android.logic.RepositoryMessageHandler;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements RepositoryMessageHandler
 {
 
     @Override
@@ -38,5 +43,21 @@ public class MainActivity extends AppCompatActivity
         NavController navController = Objects.requireNonNull(navHostFragment).getNavController();
 
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
+
+        LogicMain.getInstance(getApplicationContext()).getRepository().applySubcription(this);
+
+
+    }
+
+    @Override
+    public void onMessageReceive(RepositoryMessage<?> message) {
+        System.out.println("Получили сообщение! Оно имеет тип...");
+        if (message instanceof RepositoryLandMessage)
+        {
+            System.out.println("RepositoryLandMessage!");
+
+            RepositoryLandMessage msg = (RepositoryLandMessage) message;
+            System.out.println("В списке " + msg.getData().size() + " элементов!");
+        }
     }
 }

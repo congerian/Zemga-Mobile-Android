@@ -1,11 +1,13 @@
 package ru.zemga.mobile.android.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Land
 {
-
-    //Location inner helper class
+    /**
+     * Location inner helper class
+     */
     public static class Location
     {
         private final double lon;
@@ -16,14 +18,19 @@ public class Land
             this.lon = lon;
         }
 
+        public Location(Location other)
+        {
+            this.lat = other.getLat();
+            this.lon = other.getLon();
+        }
+
         public double getLon() { return lon; }
         public double getLat() { return lat; }
     }
 
-    //Type helper class
-    //public enum LandType {IJS, LPH, SNT} // ИЖС == 0, СНТ == 1, ЛПХ == 2
-
-    //URL field helper class
+    /**
+     * URL field helper class
+     */
     public static class URLField
     {
         private final String name;
@@ -36,10 +43,19 @@ public class Land
             this.description = description;
             this.URL = URL;
         }
+
+        public URLField(URLField other)
+        {
+            this.name = other.getName();
+            this.description = other.getDescription();
+            this.URL = other.getURL();
+        }
+
         public String getName() { return name; }
         public String getDescription() { return description; }
         public String getURL() { return URL; }
     }
+
 
     //Fields helper class
     public static class LandFields
@@ -92,16 +108,36 @@ public class Land
             this.price       = price;
             this.district    = district;
             this.address     = address;
-            this.docURLs     = docURLs;
-            this.photos = photos;
-            this.borderLocs = borderLocs;
-            this.location = location;
+            this.docURLs     = new ArrayList<>(docURLs);
+            this.photos      = new ArrayList<>(photos);
+            this.borderLocs  = new ArrayList<>(borderLocs);
+            this.location    = location;
+        }
+
+        public LandFields( LandFields other)
+        {
+            this.id = other.getId();
+            this.name = other.getName();
+            this.description = other.getDescription();
+            this.previewURL  = other.getPreviewURL();
+            this.reglament   = other.getReglament();
+            this.kadastr     = other.getKadastr();
+            this.usage       = other.getUsage();
+            this.square      = other.getSquare();
+            this.type        = other.getType();
+            this.price       = other.getPrice();
+            this.district    = other.getDistrict();
+            this.address     = other.getAdress();
+            this.docURLs     = other.getDocURLs();
+            this.photos = other.getPhotos();
+            this.borderLocs = other.getBorderLocs();
+            this.location = other.getLocation();
         }
 
         public Long             getId()             { return id; }
         public String           getName()           { return name; }
         public String           getDescription()    { return description; }
-        public URLField         getPreviewURL()     { return previewURL; }
+        public URLField         getPreviewURL()     { return new URLField(previewURL); }
         public String           getReglament()      { return reglament; }
         public String           getKadastr()        { return kadastr; }
         public String           getUsage()          { return usage; }
@@ -110,21 +146,25 @@ public class Land
         public Double           getPrice()          { return price; }
         public String           getDistrict()       { return district; }
         public String           getAdress()         { return address; }
-        public List<URLField>   getDocURLs()        { return docURLs; }
-        public List<URLField>   getPhotos()         { return photos; }
-        public List<Location>   getBorderLocs()     { return borderLocs; }
-        public Location         getLocation()       { return location; }
+        public List<URLField>   getDocURLs()        { return new ArrayList<>(docURLs); }
+        public List<URLField>   getPhotos()         { return new ArrayList<>(photos); }
+        public List<Location>   getBorderLocs()     { return new ArrayList<>(borderLocs); }
+        public Location         getLocation()       { return new Location(location); }
 
     }
 
     private final LandFields fields;
 
-    public Land(LandFields fields) {
-        this.fields = fields;
-    }
-
     public LandFields getFields() {
         return fields;
+    }
+
+    public Land (Land other)
+    {
+        this.fields = new LandFields(other.fields);
+    }
+    public Land (LandFields fields) {
+        this.fields = fields;
     }
 
 }
