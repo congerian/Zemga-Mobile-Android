@@ -14,15 +14,12 @@
         android:id="@+id/navigation_home"
         android:name="ru.zemga.mobile.android.ui.main.home.HomeFragment"
         tools:layout="@layout/home_fragment" >
-        <action
-            android:id="@+id/action_navigation_beginning_to_navigation_search"
-            app:destination="@id/navigation_search" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_search"
-        android:name="ru.zemga.mobile.android.ui.main.search.SearchFragment"
-        tools:layout="@layout/search_fragment" />
+        android:id="@+id/navigation_search_list"
+        android:name="ru.zemga.mobile.android.ui.main.search_list.SearchListFragment"
+        tools:layout="@layout/search_list_fragment" />
 
     <fragment
         android:id="@+id/navigation_sell"

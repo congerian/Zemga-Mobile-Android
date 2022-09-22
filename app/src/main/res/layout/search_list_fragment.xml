@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.search_list.SearchListFragment"
-    android:id="@+id/searchFragment">
+    android:id="@+id/searchListFragment">
 
 
 

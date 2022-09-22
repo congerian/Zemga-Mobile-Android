@@ -1,9 +1,6 @@
 package ru.zemga.mobile.android.logic;
 
-import android.content.Context;
 import android.content.res.Resources;
-import android.os.Handler;
-import android.os.Looper;
 
 import com.google.gson.Gson;
 
@@ -16,8 +13,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.locks.ReentrantLock;
 
 import ru.zemga.mobile.android.R;
@@ -27,14 +22,14 @@ public class LandRepository
 {
     private static class Response
     {
-        List<Land> lands;
-    };
+        public List<Land> lands;
+    }
 
     private final ReentrantLock handlerMutex   = new ReentrantLock();
     private final ReentrantLock dataMutex      = new ReentrantLock();
 
+    private final List<WeakReference<RepositoryMessageHandler>> handlerList;
     private volatile boolean isUpdating = false;
-    private volatile List<WeakReference<RepositoryMessageHandler>> handlerList;
     private volatile HashMap<Long, Land> lands;
 
     private final String serverURL;
@@ -71,7 +66,7 @@ public class LandRepository
         requestUpdate();
     }
 
-    public void applySubcription (RepositoryMessageHandler handler)
+    public void applySubscription (RepositoryMessageHandler handler)
     {
         handlerMutex.lock();
         handlerList.add(new WeakReference<>(handler));
@@ -92,13 +87,13 @@ public class LandRepository
             {
                 String urlPrefix = isHTTPS ? "https://" : "http://";
                 URL url = new URL(urlPrefix + serverURL + ":" + serverPort + "/" + rest_client_get_all);
-                System.out.println(url.toString());
+                System.out.println(url);
 
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("POST");
                 urlConnection.setRequestProperty("Content-Type", "application/json");
-                urlConnection.setReadTimeout(10000 /* milliseconds */ );
-                urlConnection.setConnectTimeout(15000 /* milliseconds */ );
+                urlConnection.setReadTimeout(10000);
+                urlConnection.setConnectTimeout(15000);
                 urlConnection.setDoOutput(true);
                 urlConnection.connect();
 
@@ -152,7 +147,7 @@ public class LandRepository
     public HashMap<Long, Land> getLands()
     {
         dataMutex.lock();
-        HashMap<Long, Land> lands_copy = new HashMap<Long, Land> (this.lands);
+        HashMap<Long, Land> lands_copy = new HashMap<> (this.lands);
         dataMutex.unlock();
         return lands_copy;
     }

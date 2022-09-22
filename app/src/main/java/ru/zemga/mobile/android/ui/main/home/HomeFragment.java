@@ -6,9 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import ru.zemga.mobile.android.databinding.HomeFragmentBinding;
+import ru.zemga.mobile.android.ui.main.MainActivity;
 
 public class HomeFragment extends Fragment
 {
@@ -20,7 +22,11 @@ public class HomeFragment extends Fragment
 
     @Override
     public void onPause ()
-    { super.onPause(); }
+    {
+        super.onPause();
+        MainActivity activity = (MainActivity) getActivity();
+        activity.hideNavBar();
+    }
 
     public View onCreateView(
             @NonNull LayoutInflater inflater,
@@ -35,5 +41,11 @@ public class HomeFragment extends Fragment
         return root;
     }
 
-
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
+        super.onViewCreated(view, savedInstanceState);
+        MainActivity activity = (MainActivity) getActivity();
+        activity.showNavBar();
+    }
 }

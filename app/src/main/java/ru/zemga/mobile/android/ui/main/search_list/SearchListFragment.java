@@ -1,4 +1,4 @@
-package ru.zemga.mobile.android.ui.main.search;
+package ru.zemga.mobile.android.ui.main.search_list;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,18 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import ru.zemga.mobile.android.databinding.SearchFragmentBinding;
+import ru.zemga.mobile.android.R;
+import ru.zemga.mobile.android.databinding.SearchListFragmentBinding;
 import ru.zemga.mobile.android.ui.main.MainActivity;
+import ru.zemga.mobile.android.ui.main.search.SearchFragment;
 
-public class SearchFragment extends Fragment
+public class SearchListFragment extends Fragment
 {
-    SearchFragmentBinding binding;
+    SearchListFragmentBinding binding;
 
     @Override
     public void onStart ()
-    {
-        super.onStart();
-    }
+    { super.onStart(); }
 
     @Override
     public void onPause ()
@@ -36,9 +36,20 @@ public class SearchFragment extends Fragment
             Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        binding = SearchFragmentBinding.inflate(inflater, container, false);
+        binding = SearchListFragmentBinding.inflate(inflater, container, false);
 
         View root = binding.getRoot();
+
+        SearchFragment fragment = new SearchFragment();
+
+        root.setOnClickListener((View v) -> {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_host, fragment)
+                    .addToBackStack(null)
+                    .commit();
+            System.out.println("Создаем новый");
+
+        });
 
         return root;
     }
@@ -48,7 +59,8 @@ public class SearchFragment extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
         MainActivity activity = (MainActivity) getActivity();
-        //activity.showNavBar();
+        activity.showNavBar();
     }
+
 
 }

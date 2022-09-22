@@ -1,10 +1,9 @@
 package ru.zemga.mobile.android.ui.main;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,19 +22,20 @@ import ru.zemga.mobile.android.logic.RepositoryMessageHandler;
 
 public class MainActivity extends AppCompatActivity implements RepositoryMessageHandler
 {
+    private MainActivityBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        MainActivityBinding binding = MainActivityBinding.inflate(getLayoutInflater());
+        binding = MainActivityBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.bottom_navigation);
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_map, R.id.navigation_search, R.id.navigation_sell)
+                R.id.navigation_home, R.id.navigation_map, R.id.navigation_search_list, R.id.navigation_sell)
                 .build();
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
@@ -44,9 +44,17 @@ public class MainActivity extends AppCompatActivity implements RepositoryMessage
 
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
 
-        LogicMain.getInstance(getApplicationContext()).getRepository().applySubcription(this);
+        LogicMain.getInstance(getApplicationContext()).getRepository().applySubscription(this);
+
+        hideNavBar();
 
 
+    }
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
     }
 
     @Override
@@ -59,5 +67,15 @@ public class MainActivity extends AppCompatActivity implements RepositoryMessage
             RepositoryLandMessage msg = (RepositoryLandMessage) message;
             System.out.println("В списке " + msg.getData().size() + " элементов!");
         }
+    }
+
+    public void hideNavBar ()
+    {
+        binding.bottomNavigation.setVisibility(View.GONE);
+    }
+
+    public void showNavBar ()
+    {
+        binding.bottomNavigation.setVisibility(View.VISIBLE);
     }
 }
