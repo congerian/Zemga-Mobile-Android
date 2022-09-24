@@ -7,6 +7,6 @@
     tools:context=".ui.main.search_list.SearchListFragment"
     android:id="@+id/searchListFragment">
 
-
+    <include layout = "@layout/search_with_guidelines"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

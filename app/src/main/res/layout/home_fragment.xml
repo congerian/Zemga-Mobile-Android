@@ -1,40 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.home.HomeFragment"
     android:id="@+id/homeFragment">
 
+    <include layout = "@layout/search_with_guidelines"/>
+
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/left_guideline"
+        android:id="@+id/center_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
+        app:layout_constraintGuide_percent="0.5" />
 
-    <ru.zemga.mobile.android.ui.widgets.SearchWidget
+    <LinearLayout
+        android:id="@+id/lph_layout"
+
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="40dp"
 
         app:layout_constrainedWidth="true"
 
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_widget"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@id/left_guideline"
-        app:layout_constraintRight_toRightOf="@id/right_guideline"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/center_guideline"
 
-        app:layout_constraintVertical_bias="0.1"
-        app:layout_constraintHorizontal_bias="0.5">
+        app:layout_constraintVertical_bias="0.0"
+        android:orientation="vertical">
 
-    </ru.zemga.mobile.android.ui.widgets.SearchWidget>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/barn"
+            android:adjustViewBounds="true"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/right_guideline"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/lph_text"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="0dp"
+            android:padding="2dp"
+
+            app:autoSizeTextType="none"
+            android:textSize="18sp"
+
+            android:lines="1"
+
+            android:text="ЛПХ"
+
+            android:gravity="center"
+
+            android:textColor="?attr/colorOnPrimary">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ijs_layout"
+
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9" />
+
+        android:layout_margin="40dp"
+
+        app:layout_constrainedWidth="true"
+
+        app:layout_constraintTop_toBottomOf="@id/lph_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="@id/center_guideline"
+
+        app:layout_constraintVertical_bias="0.0"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/village"
+            android:adjustViewBounds="true"/>
+
+        <TextView
+            android:id="@+id/ijs_text"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="0dp"
+            android:padding="2dp"
+
+            app:autoSizeTextType="none"
+            android:textSize="18sp"
+
+            android:lines="1"
+
+            android:text="ИЖС"
+
+            android:gravity="center"
+
+            android:textColor="?attr/colorOnPrimary">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/snt_layout"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="40dp"
+
+        app:layout_constrainedWidth="true"
+
+        app:layout_constraintTop_toBottomOf="@id/search_widget"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/center_guideline"
+        app:layout_constraintRight_toRightOf="parent"
+
+        app:layout_constraintVertical_bias="0.0"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/garden"
+            android:adjustViewBounds="true"/>
+
+        <TextView
+            android:id="@+id/snt_text"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="0dp"
+            android:padding="2dp"
+
+            app:autoSizeTextType="none"
+            android:textSize="18sp"
+
+            android:lines="1"
+
+            android:text="СНТ"
+
+            android:gravity="center"
+
+            android:textColor="?attr/colorOnPrimary">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/other_layout"
+
+        android:clickable="true"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="40dp"
+
+        app:layout_constrainedWidth="true"
+
+        app:layout_constraintTop_toBottomOf="@id/snt_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/center_guideline"
+        app:layout_constraintRight_toRightOf="parent"
+
+        app:layout_constraintVertical_bias="0.0"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/messaging"
+            android:adjustViewBounds="true"/>
+
+        <TextView
+            android:id="@+id/other_text"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_margin="0dp"
+            android:padding="2dp"
+
+            app:autoSizeTextType="none"
+            android:textSize="18sp"
+
+            android:lines="1"
+
+            android:text="Ещё"
+
+            android:gravity="center"
+
+            android:textColor="?attr/colorOnPrimary">
+
+        </TextView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

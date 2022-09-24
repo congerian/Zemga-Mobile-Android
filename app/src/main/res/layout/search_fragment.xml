@@ -7,6 +7,4 @@
     tools:context=".ui.main.search_list.SearchListFragment"
     android:id="@+id/searchFragment">
 
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

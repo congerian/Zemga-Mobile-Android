@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.Guideline
@@ -7,44 +8,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.025" />
+        app:layout_constraintGuide_percent="0.06" />
 
-    <TextView
-        android:id="@+id/search_text"
-
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/top_guideline"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02" />
+
+    <ru.zemga.mobile.android.ui.widgets.SearchWidget
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/search_widget"
+
+        android:layout_margin="0dp"
 
         app:layout_constrainedWidth="true"
 
-        android:layout_margin="0dp"
-        android:padding="2dp"
-
-        app:autoSizeTextType="none"
-        android:textSize="14sp"
-
-        android:lines="1"
-
-        android:text="Поиск"
-
-        android:gravity="center|left"
-
-        android:textColor="?attr/colorOnSecondary"
-
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/top_guideline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/left_guideline"
         app:layout_constraintRight_toRightOf="@id/right_guideline"
 
-        >
+        app:layout_constraintVertical_bias="0.0">
 
-    </TextView>
+    </ru.zemga.mobile.android.ui.widgets.SearchWidget>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/right_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.9" />
-
+        app:layout_constraintGuide_percent="0.84" />
 </merge>

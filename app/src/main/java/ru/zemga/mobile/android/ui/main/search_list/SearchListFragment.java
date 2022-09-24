@@ -40,16 +40,6 @@ public class SearchListFragment extends Fragment
 
         View root = binding.getRoot();
 
-        SearchFragment fragment = new SearchFragment();
-
-        root.setOnClickListener((View v) -> {
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_host, fragment)
-                    .addToBackStack(null)
-                    .commit();
-            System.out.println("Создаем новый");
-
-        });
 
         return root;
     }
