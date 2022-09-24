@@ -4,9 +4,9 @@
         <item name="colorPrimaryVariant">@color/gray</item>
         <item name="colorOnPrimary">@color/light_beige</item>
 
-        <item name="colorSecondary">@color/dark</item>
-        <item name="colorSecondaryVariant">@color/gray</item>
-        <item name="colorOnSecondary">@color/light_beige</item>
+        <item name="colorSecondary">@color/dark_gray</item>
+        <item name="colorSecondaryVariant">@color/dark</item>
+        <item name="colorOnSecondary">@color/gray</item>
 
         <item name="android:colorBackground">@color/dark</item>
         <item name="colorOnBackground">@color/light_beige</item>
@@ -29,10 +29,14 @@
         <item name="itemRippleColor">@null</item>
 
         <item name="labelVisibilityMode">unlabeled</item>
+    </style>
 
+
+    <style name="Theme.Zemga.SearchWidget" parent="Theme.Zemga.MainTheme">
+        <item name="android:background">@drawable/search_widget_background</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="elevation">4dp</item>
-
-        <item name="android:outlineAmbientShadowColor">?attr/colorOnPrimary</item>
     </style>
 
 </resources>

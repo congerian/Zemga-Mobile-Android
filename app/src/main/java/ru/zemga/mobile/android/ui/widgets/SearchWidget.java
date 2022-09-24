@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -24,8 +25,11 @@ public class SearchWidget extends ConstraintLayout
 
     public SearchWidget(Context context, @Nullable AttributeSet attrs, int defStyleAttr)
     {
-        super(context, attrs, defStyleAttr);
+        this(context, attrs, defStyleAttr, R.style.Theme_Zemga_SearchWidget);
+    }
 
+    public SearchWidget(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
     }
 
